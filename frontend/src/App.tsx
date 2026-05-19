@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Preloader } from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import { revealVariants, staggerContainer } from './hooks/useScrollReveal'
+import { apiUrl } from './lib/api'
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true)
@@ -28,7 +29,7 @@ function App() {
       const formData = new FormData()
       formData.append('file', file)
 
-      const response = await fetch('/api/compress', {
+      const response = await fetch(apiUrl('/api/compress'), {
         method: 'POST',
         body: formData,
       })
