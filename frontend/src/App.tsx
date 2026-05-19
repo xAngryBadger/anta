@@ -2,7 +2,7 @@ import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Preloader } from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
-import { revealVariants, staggerContainer, useCounter } from './hooks/useScrollReveal'
+import { revealVariants, staggerContainer } from './hooks/useScrollReveal'
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true)
