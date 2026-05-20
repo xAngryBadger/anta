@@ -67,9 +67,9 @@ function App() {
 
   return (
     <>
-      {showPreloader && <Preloader onComplete={() => setShowPreloader(false)} />}
+      {showPreloader && <Preloader title="PDF Compressor" onComplete={() => setShowPreloader(false)} />}
 
-      <div className="noise-overlay noise-overlay--animated" />
+      <div className="noise-overlay noise-overlay--animated" aria-hidden="true" />
 
       <motion.div
         initial={{ clipPath: 'inset(0 0 100% 0)' }}
