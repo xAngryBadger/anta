@@ -77,7 +77,7 @@ function App() {
         transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]"
       >
-        <header className="fixed top-0 left-0 right-0 z-40 fade-border-bottom" style={{ backdropFilter: 'blur(16px)', backgroundColor: 'rgba(13,17,23,0.8)' }}>
+        <header className="fixed top-0 left-0 right-0 z-40 fade-border-bottom h-16 flex items-center" style={{ backdropFilter: 'blur(16px)', backgroundColor: 'rgba(9,9,11,0.8)' }}>
           <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div className="flex items-center gap-3">
               <motion.div
@@ -86,7 +86,7 @@ function App() {
                 transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-8 h-8 flex items-center justify-center"
               >
-                <svg className="w-6 h-6 text-[var(--color-sage)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </motion.div>
@@ -98,14 +98,14 @@ function App() {
           </div>
         </header>
 
-        <main className="max-w-5xl mx-auto px-6 pt-24 pb-16 lg:px-8">
+        <main className="max-w-5xl mx-auto px-6 pt-20 pb-16 lg:px-8">
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
             <motion.div variants={revealVariants} custom={0} className="mb-12 text-center">
-              <p className="eyebrow text-[var(--color-sage)] mb-3">Compressão de PDF</p>
+              <p className="eyebrow text-[var(--color-primary)] mb-3">Compressão de PDF</p>
               <h2 className="text-3xl md:text-4xl font-serif font-normal text-[var(--color-cream)] leading-tight">
                 Reduza o tamanho.<br />
                 <span className="text-[var(--color-amber-light)]">Mantenha a qualidade.</span>
@@ -123,8 +123,8 @@ function App() {
                 onDrop={handleDrop}
                 className={`relative border border-dashed transition-all duration-300 cursor-pointer geometric-bg ${
                   isDragging
-                    ? 'border-[var(--color-sage)] bg-[var(--color-sage)]/5'
-                    : 'border-[var(--color-border)] hover:border-[var(--color-sage)]'
+                    ? 'border-[var(--color-primary)] bg-[var(--color-primary)]/5'
+                    : 'border-[var(--color-border)] hover:border-[var(--color-primary)]'
                 }`}
                 style={{ minHeight: '240px' }}
               >
@@ -137,7 +137,7 @@ function App() {
                 />
                 <label htmlFor="file-input" className="cursor-pointer flex flex-col items-center justify-center py-20 px-8 relative z-10">
                   <motion.svg
-                    className="w-10 h-10 text-[var(--color-sage)] mb-4"
+                    className="w-10 h-10 text-[var(--color-primary)] mb-4"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -155,7 +155,7 @@ function App() {
                       animate={{ opacity: 1, y: 0 }}
                       className="mt-6 text-center"
                     >
-                      <p className="text-sm text-[var(--color-sage)]">{file.name}</p>
+                      <p className="text-sm text-[var(--color-primary)]">{file.name}</p>
                       <p className="label-mono text-[var(--color-text-muted)] mt-1">
                         {(file.size / 1024 / 1024).toFixed(2)} MB
                       </p>
@@ -242,7 +242,7 @@ function App() {
                   <div className="editorial-divider pb-6 mb-6">
                     <div className="w-full h-[2px] bg-[var(--color-border)] overflow-hidden">
                       <motion.div
-                        className="h-full bg-[var(--color-sage)]"
+                        className="h-full bg-[var(--color-primary)]"
                         initial={{ width: 0 }}
                         animate={{ width: `${result.reduction}%` }}
                         transition={{ duration: 1, ease: [0.25, 1, 0.5, 1], delay: 0.2 }}
@@ -258,7 +258,7 @@ function App() {
                     </div>
                     <button
                       onClick={reset}
-                      className="link-underline label-mono text-[var(--color-sage)] hover:text-[var(--color-sage-light)] transition-colors"
+                      className="link-underline label-mono text-[var(--color-primary)] hover:text-[var(--color-primary-light)] transition-colors"
                     >
                       Novo arquivo
                     </button>
@@ -276,7 +276,7 @@ function App() {
             </p>
             <a
               href="https://github.com/xAngryBadger"
-              className="link-underline label-mono text-[var(--color-sage)] hover:text-[var(--color-sage-light)]"
+              className="link-underline label-mono text-[var(--color-primary)] hover:text-[var(--color-primary-light)]"
             >
               GitHub
             </a>
@@ -291,7 +291,7 @@ function ResultCard({ label, value, accent = false }: { label: string; value: st
   return (
     <div className="py-4 editorial-divider">
       <p className="eyebrow text-[var(--color-text-muted)] mb-2">{label}</p>
-      <p className={`text-2xl font-serif font-normal counter-animate ${accent ? 'text-[var(--color-sage)]' : 'text-[var(--color-cream)]'}`}>
+      <p className={`text-2xl font-serif font-normal counter-animate ${accent ? 'text-[var(--color-primary)]' : 'text-[var(--color-cream)]'}`}>
         {value}
       </p>
     </div>
