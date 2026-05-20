@@ -37,7 +37,7 @@ function App() {
       if (!response.ok) throw new Error('Failed to compress')
 
       const blob = await response.blob()
-      const reduction = Math.round((1 - blob.size / file.size) * 100)
+      const reduction = Math.max(0, Math.round((1 - blob.size / file.size) * 100))
 
       setResult({
         original: file.name,
@@ -47,11 +47,12 @@ function App() {
         compressedSize: blob.size,
       })
 
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement('a')
-      link.href = url
-      link.download = `compressed_${file.name}`
-      link.click()
+    const url = window.URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = `compressed_${file.name}`
+    link.click()
+    URL.revokeObjectURL(url)
     } catch (error) {
       console.error('Error:', error)
       alert('Erro ao comprimir PDF')
@@ -86,7 +87,7 @@ function App() {
                 transition={{ delay: 0.4, type: 'spring', stiffness: 200, damping: 15 }}
                 className="w-8 h-8 flex items-center justify-center"
               >
-                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="w-6 h-6 text-[var(--color-primary)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
               </motion.div>
@@ -136,12 +137,13 @@ function App() {
                   id="file-input"
                 />
                 <label htmlFor="file-input" className="cursor-pointer flex flex-col items-center justify-center py-20 px-8 relative z-10">
-                  <motion.svg
-                    className="w-10 h-10 text-[var(--color-primary)] mb-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    animate={{ y: isDragging ? -4 : 0 }}
+  <motion.svg
+          className="w-10 h-10 text-[var(--color-primary)] mb-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          aria-hidden="true"
+          animate={{ y: isDragging ? -4 : 0 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -270,7 +272,7 @@ function App() {
         </main>
 
         <footer className="fade-border-top px-6 py-6 mt-8">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
+          <div className="max-w-5xl mx-auto flex items-center justify-between">
             <p className="font-serif text-sm text-[var(--color-text-muted)]">
               Desenvolvido por Isaac Nathan
             </p>
