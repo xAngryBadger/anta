@@ -1,6 +1,6 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse
 from pypdf import PdfReader, PdfWriter
 import io
 import os
@@ -35,10 +35,10 @@ async def compress_pdf(file: UploadFile = File(...)):
         writer.write(output_stream)
         output_stream.seek(0)
         
-        return FileResponse(
+        return StreamingResponse(
             output_stream,
             media_type="application/pdf",
-            filename=f"compressed_{file.filename}"
+            headers={"Content-Disposition": f'attachment; filename="compressed_{file.filename}"'},
         )
     except Exception as e:
         from fastapi import HTTPException
