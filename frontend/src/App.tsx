@@ -61,7 +61,7 @@ function App() {
         setTimeout(() => URL.revokeObjectURL(url), 10000)
   } catch (error) {
     if (error instanceof Error && error.message === 'NO_API_URL') {
-      alert('Configure a URL da API primeiro. Clique em "Sem API" no header e cole a URL do ngrok.')
+      alert('Configure a URL da API primeiro. Clique em "Sem API" no header e cole a URL do Cloudflare.')
     } else {
       console.error('Error:', error)
       alert('Erro ao comprimir PDF. Verifique se o backend está online.')
