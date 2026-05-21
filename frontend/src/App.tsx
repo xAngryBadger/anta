@@ -57,8 +57,8 @@ function App() {
     const link = document.createElement('a')
     link.href = url
     link.download = `compressed_${file.name}`
-    link.click()
-    URL.revokeObjectURL(url)
+        link.click()
+        setTimeout(() => URL.revokeObjectURL(url), 10000)
   } catch (error) {
     if (error instanceof Error && error.message === 'NO_API_URL') {
       alert('Configure a URL da API primeiro. Clique em "Sem API" no header e cole a URL do ngrok.')
@@ -145,7 +145,7 @@ function App() {
               >
                 <input
                   type="file"
-                  onChange={(e) => e.target.files && setFile(e.target.files[0])}
+                  onChange={(e) => { const f = e.target.files?.[0]; if (f?.type === 'application/pdf') setFile(f) }}
                   accept="application/pdf"
                   className="hidden"
                   id="file-input"

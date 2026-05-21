@@ -4,7 +4,6 @@ from fastapi.responses import StreamingResponse
 from pypdf import PdfReader, PdfWriter
 import io
 import os
-from pathlib import Path
 
 app = FastAPI()
 app.add_middleware(
@@ -15,26 +14,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-TEMP_DIR = Path("/tmp/pdf-compressor")
-TEMP_DIR.mkdir(exist_ok=True)
-
 @app.post("/api/compress")
 async def compress_pdf(file: UploadFile = File(...)):
     try:
         content = await file.read()
         input_stream = io.BytesIO(content)
-        
+
         reader = PdfReader(input_stream)
         writer = PdfWriter()
-        
+
         for page in reader.pages:
             page.compress_content_streams()
             writer.add_page(page)
-        
+
         output_stream = io.BytesIO()
         writer.write(output_stream)
         output_stream.seek(0)
-        
+
         return StreamingResponse(
             output_stream,
             media_type="application/pdf",
