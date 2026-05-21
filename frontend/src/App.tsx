@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Preloader } from './components/Preloader'
 import { useLenis } from './hooks/useLenis'
 import { revealVariants, staggerContainer } from './hooks/useScrollReveal'
-import { apiUrl } from './lib/api'
+import { apiUrl, apiHeaders } from './lib/api'
 import { ApiConfig } from './components/ApiConfig'
 import { BetaBanner } from './components/BetaBanner'
 
@@ -37,6 +37,7 @@ function App() {
       const response = await fetch(apiUrl('/api/compress'), {
         method: 'POST',
         body: formData,
+        headers: apiHeaders(),
       })
 
       if (!response.ok) throw new Error('Failed to compress')
@@ -112,7 +113,7 @@ function App() {
           </div>
         </header>
 
-        <main className="max-w-5xl mx-auto px-6 pt-20 pb-16 lg:px-8">
+        <main className={`max-w-5xl mx-auto px-6 pb-16 lg:px-8 transition-[padding] duration-300 ${bannerVisible ? 'pt-[7rem]' : 'pt-20'}`}>
           <motion.div
             initial="hidden"
             animate="visible"
