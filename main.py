@@ -41,7 +41,6 @@ async def compress_pdf(file: UploadFile = File(...)):
             headers={"Content-Disposition": f'attachment; filename="compressed_{file.filename}"'},
         )
     except Exception as e:
-        from fastapi import HTTPException
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/")
