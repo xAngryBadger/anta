@@ -7,7 +7,7 @@ import { apiUrl, apiHeaders } from './lib/api'
 import { ApiConfig } from './components/ApiConfig'
 import { BetaBanner } from './components/BetaBanner'
 
-const COLAB_URL = 'https://colab.research.google.com/github/xAngryBadger/pdf-compressor/blob/main/colab-backend.ipynb'
+const COLAB_URL = 'https://colab.research.google.com/github/xAngryBadger/anta/blob/main/colab-backend.ipynb'
 
 function App() {
   const [showPreloader, setShowPreloader] = useState(true)

@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: pdf-compressor-api
+    name: anta-api
     runtime: python
     build:
       commands:

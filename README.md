@@ -1,6 +1,6 @@
-# PDF Compressor
+# Anta
 
-Comprima PDFs mantendo qualidade.
+PDF compressor with quality slider, real-time reduction estimate and result preview.
 
 ## Instalação
 
